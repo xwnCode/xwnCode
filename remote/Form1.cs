@@ -29,7 +29,7 @@ namespace remote
             rdpc.OnDisconnected += new AxMSTSCLib.IMsTscAxEvents_OnDisconnectedEventHandler(rdpc_OnDisconnected);
             this.Controls.Add(rdpc);
             rdpc.Dock = DockStyle.Fill;
-            rdpc.BringToFront();
+            rdpc.BringToFront();   
             Machine mc = new Machine();
 
             Connect(mc);
