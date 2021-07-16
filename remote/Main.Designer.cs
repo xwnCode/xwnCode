@@ -33,11 +33,11 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.申请 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.申请时间 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.操作时间 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -89,7 +89,6 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -99,11 +98,43 @@
             this.操作时间});
             this.dataGridView1.Location = new System.Drawing.Point(3, 61);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(858, 397);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // 申请时间
+            // 
+            this.申请时间.DataPropertyName = "sqdate";
+            this.申请时间.HeaderText = "申请日期";
+            this.申请时间.Name = "申请时间";
+            this.申请时间.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.申请时间.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.申请时间.Width = 200;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "sqdate";
+            this.Column1.HeaderText = "操作日期";
+            this.Column1.Name = "Column1";
+            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column1.Width = 200;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "state";
+            this.Column2.HeaderText = "状态";
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 150;
+            // 
+            // 操作时间
+            // 
+            this.操作时间.DataPropertyName = "starttime";
+            this.操作时间.HeaderText = "操作时间";
+            this.操作时间.Name = "操作时间";
+            this.操作时间.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.操作时间.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.操作时间.Width = 200;
             // 
             // tabPage2
             // 
@@ -114,43 +145,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "待操作";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // 申请时间
-            // 
-            this.申请时间.DataPropertyName = "sqdate";
-            this.申请时间.HeaderText = "申请日期";
-            this.申请时间.Name = "申请时间";
-            this.申请时间.ReadOnly = true;
-            this.申请时间.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.申请时间.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.申请时间.Width = 200;
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "sqdate";
-            this.Column1.HeaderText = "操作日期";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column1.Width = 200;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "state";
-            this.Column2.HeaderText = "状态";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 150;
-            // 
-            // 操作时间
-            // 
-            this.操作时间.DataPropertyName = "starttime";
-            this.操作时间.HeaderText = "操作时间";
-            this.操作时间.Name = "操作时间";
-            this.操作时间.ReadOnly = true;
-            this.操作时间.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.操作时间.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.操作时间.Width = 200;
             // 
             // Main
             // 

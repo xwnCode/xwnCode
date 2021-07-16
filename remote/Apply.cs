@@ -115,7 +115,7 @@ namespace remote
                 m_detail.startTime = chk.startTime;
                 m_detail.endTime = chk.endTime;
                 m_detail.Describle = chk.Describle;
-                m_detail.state = "审核中";
+                m_detail.state = "审核中"; 
                 b_detail.Add(m_detail);
                // m_detail.sqrid=
             }

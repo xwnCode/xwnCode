@@ -46,6 +46,15 @@ namespace remote
 
 
         }
+        private void BindData2()
+        {
+            string sql = "sqrid=" + m_user.id + " and ( state='已审核' and CONVERT(datetime2,GETDATE(),120)>=convert(datetime2,(convert(char(10),sqDate,120) +' '+startTime+':00:00'),120) and CONVERT(datetime2,GETDATE(),120)<convert(datetime2,(convert(char(10),sqDate,120) +' '+endtime+':00:00'),120)) or (getdate()<sqdate and state='已审核')";
+            //m_detail.
+            List<Vline.Model.BUSI_applyDetail> list_detail = b_detail.GetModelList(sql);
+            dataGridView2.DataSource = list_detail;
+
+
+        }
         private void 申请_Click(object sender, EventArgs e)
         {
             Apply app = new Apply();
@@ -55,6 +64,7 @@ namespace remote
         private void Main_Load(object sender, EventArgs e)
         {
             BindData();
+            BindData2();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -70,6 +80,25 @@ namespace remote
             }
             MessageBox.Show("审核成功");
             BindData();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            BindData();
+            BindData2();
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+           string startTime= dataGridView2.Rows[e.RowIndex].Cells["startTime"].Value.ToString();
+            string endTime = dataGridView2.Rows[e.RowIndex].Cells["endTime"].Value.ToString();
+            int h = DateTime.Now.Hour;
+       
+            if (dataGridView2.Columns[e.ColumnIndex].Name == "remote")
+            {
+                Form2 fr2 = new Form2();
+                fr2.Show();
+            }
         }
     }
 }
