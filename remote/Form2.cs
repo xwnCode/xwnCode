@@ -11,8 +11,13 @@ namespace remote
 {
     public partial class Form2 : Form
     {
+        Vline.BLL.BUSI_OperateHistory b_history = new Vline.BLL.BUSI_OperateHistory();
+        Vline.Model.BUSI_OperateHistory m_history = new Vline.Model.BUSI_OperateHistory();
+        Vline.Model.BUSI_applyDetail m_detail = Mainauditing.m_detail;
+        Vline.Model.BUSI_User m_user = Login.m_user;
         private AxMSTSCLib.AxMsRdpClient7 rdpc = null;
         private DateTime observeTime;
+        int OperateMinute = 0;
         public Form2()
         {
             InitializeComponent();
@@ -41,13 +46,14 @@ namespace remote
 
         void rdpc_OnDisconnected(object sender, AxMSTSCLib.IMsTscAxEvents_OnDisconnectedEvent e)
         {
-            //处理断开连接
+            //处理断开连接,计入历史记录表
+
            
             this.Dispose();
             this.Close();
         }
 
-
+       
         public void Disconnect()
         {
             try
@@ -55,6 +61,7 @@ namespace remote
                 if (rdpc.Connected == 1)
                 {
                     rdpc.Disconnect();
+                  
                     MessageBox.Show("可操控时间到期！");
                 }
             }
@@ -98,6 +105,9 @@ namespace remote
         {
             SetRdpClientProperties(parMachine);
             rdpc.Connect();
+        
+
+
         }
 
         //远程主机配置
@@ -207,10 +217,13 @@ namespace remote
         {
             // DateTime observeTime = DateTime.Parse(" 2023-11-22 22:45:30 "); // 倒计时日期
             DateTime now = DateTime.Now;     // 当前时间
-            int hmh = (now.Hour - observeTime.Hour) * 3600 + (now.Minute - observeTime.Minute) * 60 + (now.Second - observeTime.Second);
+           
             //TimeSpan ts = dtime.Subtract(now);     // 两个时间之差
-            if (hmh > 60)
+            if (now.Hour < Convert.ToInt32(m_detail.endTime) && now.Hour >= Convert.ToInt32(m_detail.startTime))
             {
+                OperateMinute = (now.Hour - observeTime.Hour) * 60 + (now.Minute - observeTime.Minute);
+            }
+            else {
                 Disconnect();
             }
         }
@@ -221,5 +234,27 @@ namespace remote
             OnCreateControlMsg();
         }
 
+        private void Form2_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("你确定要退出程序吗?", "操作提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if (result == DialogResult.OK)
+            {
+                m_history.startTime = observeTime.ToString();
+                m_history.endTime = DateTime.Now.ToString();
+                m_history.OperateTime = OperateMinute.ToString();
+                m_history.OperateDate = DateTime.Now;
+                m_history.applyDetailId = m_detail.id;
+                m_history.userid = m_user.id;
+                b_history.Add(m_history);
+               
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+
+
+            
+        }
     }
 }

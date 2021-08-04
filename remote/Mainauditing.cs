@@ -12,7 +12,7 @@ namespace remote
     public partial class Mainauditing : Form
     {
         Vline.BLL.BUSI_applyDetail b_detail = new Vline.BLL.BUSI_applyDetail();
-        Vline.Model.BUSI_applyDetail m_detail = new Vline.Model.BUSI_applyDetail();
+        public static Vline.Model.BUSI_applyDetail  m_detail = new Vline.Model.BUSI_applyDetail();
         Vline.Model.BUSI_User m_user = Login.m_user;
         public Mainauditing()
         {
@@ -42,8 +42,9 @@ namespace remote
         {
             //m_detail.
             List<Vline.Model.BUSI_applyDetail> list_detail = b_detail.GetModelList("sqrid=" + m_user.id + "");
+            dataGridView1.AutoGenerateColumns = false;
             dataGridView1.DataSource = list_detail;
-
+           
 
         }
         private void BindData2()
@@ -51,7 +52,9 @@ namespace remote
             string sql = "sqrid=" + m_user.id + " and ( state='已审核' and CONVERT(datetime2,GETDATE(),120)>=convert(datetime2,(convert(char(10),sqDate,120) +' '+startTime+':00:00'),120) and CONVERT(datetime2,GETDATE(),120)<convert(datetime2,(convert(char(10),sqDate,120) +' '+endtime+':00:00'),120)) or (getdate()<sqdate and state='已审核')";
             //m_detail.
             List<Vline.Model.BUSI_applyDetail> list_detail = b_detail.GetModelList(sql);
+            dataGridView2.AutoGenerateColumns = false;
             dataGridView2.DataSource = list_detail;
+          
 
 
         }
@@ -90,12 +93,13 @@ namespace remote
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           string startTime= dataGridView2.Rows[e.RowIndex].Cells["startTime"].Value.ToString();
+            string startTime= dataGridView2.Rows[e.RowIndex].Cells["startTime"].Value.ToString();
             string endTime = dataGridView2.Rows[e.RowIndex].Cells["endTime"].Value.ToString();
             int h = DateTime.Now.Hour;
        
             if (dataGridView2.Columns[e.ColumnIndex].Name == "remote")
             {
+                m_detail =b_detail.GetModel(Convert.ToInt32(dataGridView2.Rows[e.RowIndex].Cells["id"].Value));
                 Form2 fr2 = new Form2();
                 fr2.Show();
             }

@@ -35,6 +35,7 @@ namespace remote
             //m_detail.
             List<Vline.Model.BUSI_applyDetail> list_detail = b_detail.GetModelList("sqrid="+m_user.id+"");
             dataGridView1.DataSource = list_detail;
+           
             
         }
     }

@@ -162,6 +162,10 @@
       <Project>{38d7aa58-c95b-449b-86c6-a8073a56e11f}</Project>
       <Name>BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="D:\微信文件\WeChat Files\wxid_wvci69chschf21\FileStorage\File\2021-07\CodematicDemo\CodematicDemo\DBUtility\DBUtility.csproj">
+      <Project>{0988c62e-247f-471f-a183-db509c7a3839}</Project>
+      <Name>DBUtility</Name>
+    </ProjectReference>
     <ProjectReference Include="D:\微信文件\WeChat Files\wxid_wvci69chschf21\FileStorage\File\2021-07\CodematicDemo\CodematicDemo\Model\Model.csproj">
       <Project>{53995dbb-9836-4647-ad22-865884fdeb9e}</Project>
       <Name>Model</Name>
