@@ -10,7 +10,7 @@ using System.Windows.Forms;
 namespace remote
 {
    
-    public partial class Login : Form
+    public partial class register : Form
     {
 
         public static Vline.Model.BUSI_User m_user = new Vline.Model.BUSI_User();
@@ -47,11 +47,6 @@ namespace remote
                 MessageBox.Show("请输入正确的用户名和密码！");
                 return;
             }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
